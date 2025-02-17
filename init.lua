@@ -190,6 +190,10 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- [[ Custom Keymaps ]]
+
+-- Unbind 's' key to avoid conflict with surround
+vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
+
 -- File navigation, open ex mode
 vim.keymap.set('n', '<leader>ex', vim.cmd.Ex)
 
@@ -424,8 +428,10 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
       -- builtin.git_files? <C-p> for ctrl p
-      vim.keymap.set('n', '<leader>ps', function()
-        builtin.grep_string { search = vim.fn.input 'Grep > ' }
+      vim.keymap.set('n', '<space>en', function()
+        require('telescope.builtin').find_files {
+          cwd = vim.fn.stdpath 'config',
+        }
       end)
 
       -- Slightly advanced example of overriding default behavior and theme
