@@ -191,7 +191,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- [[ Custom Keymaps ]]
 -- File navigation, open ex mode
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+vim.keymap.set('n', '<leader>ex', vim.cmd.Ex)
 
 -- Keep selection after indentation
 vim.keymap.set('v', '>', '>gv')
