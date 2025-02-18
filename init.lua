@@ -193,6 +193,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- Unbind 's' key to avoid conflict with surround
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
+vim.keymap.set({ 'n', 'x' }, 'S', '<Nop>')
 
 -- File navigation, open ex mode
 vim.keymap.set('n', '<leader>ex', vim.cmd.Ex)
@@ -425,6 +426,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
+      vim.keymap.set('n', '<leader>sm', builtin.marks, { desc = '[S]earch [M]arks' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
       -- builtin.git_files? <C-p> for ctrl p
