@@ -198,7 +198,7 @@ vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
 vim.keymap.set({ 'n', 'x' }, 'S', '<Nop>')
 
 -- File navigation, open ex mode
-vim.keymap.set('n', '<leader>ex', vim.cmd.Ex)
+vim.keymap.set('n', '<leader>ex', vim.cmd.Ex, { desc = 'Open vim Ex file explorer' })
 
 -- Keep selection after indentation
 vim.keymap.set('v', '>', '>gv')
@@ -206,6 +206,19 @@ vim.keymap.set('v', '<', '<gv')
 
 -- Keep same content in register after pasting
 vim.keymap.set('v', '<leader>p', '"_dP')
+
+-- Copy line and comment original
+vim.keymap.set('n', 'yd', 'yygccp', { remap = true, desc = 'Duplicate line and comment' })
+
+-- Improve scrolling navigation
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
+-- Git utilities
+vim.keymap.set('n', '<leader>gfc', '/<<<<CR>', { desc = '[G]it [F]ind [C]onflict' })
+vim.keymap.set('n', '<leader>gcu', 'dd/|||<CR>0v/>>><CR>$x', { desc = '[G]it [C]onflict Choose [U]pstream' })
+vim.keymap.set('n', '<leader>gcb', '0v/|||<CR>$x/====<CR>0v/>>><CR>$x', { desc = '[G]it [C]onflict Choose [B]ase' })
+vim.keymap.set('n', '<leader>gcs', '0v/====<CR>$x/>>><CR>dd', { desc = '[G]it [C]onflict Choose [S]tashed' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -335,6 +348,7 @@ require('lazy').setup({
       spec = {
         { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
         { '<leader>d', group = '[D]ocument' },
+        { '<leader>g', group = '[G]it' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
@@ -487,7 +501,18 @@ require('lazy').setup({
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim', opts = {} },
+      {
+        'j-hui/fidget.nvim',
+        opts = {
+          progress = {
+            ignore = {
+              function(msg)
+                return msg.lsp_client.name == 'pylsp' and string.find(msg.title, 'lint:')
+              end,
+            },
+          },
+        },
+      },
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
@@ -835,7 +860,7 @@ require('lazy').setup({
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
           --  completions whenever it has completion options available.
-          ['<C-Space>'] = cmp.mapping.complete {},
+          ['<M-Space>'] = cmp.mapping.complete {},
 
           -- Think of <c-l> as moving to the right of your snippet expansion.
           --  So if you have a snippet that's like:
@@ -978,7 +1003,7 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
