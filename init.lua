@@ -198,7 +198,7 @@ vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
 vim.keymap.set({ 'n', 'x' }, 'S', '<Nop>')
 
 -- File navigation, open ex mode
-vim.keymap.set('n', '<leader>ex', vim.cmd.Ex, { desc = 'Open vim Ex file explorer' })
+vim.keymap.set('n', '<leader>e', vim.cmd.Ex, { desc = 'Open vim Ex file explorer' })
 
 -- Keep selection after indentation
 vim.keymap.set('v', '>', '>gv')
@@ -215,7 +215,7 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
 -- Git utilities
-vim.keymap.set('n', '<leader>gfc', '/<<<<CR>', { desc = '[G]it [F]ind [C]onflict' })
+vim.keymap.set('n', '<leader>gcf', '/<<<<CR>', { desc = '[G]it [C]onflict [F]ind' })
 vim.keymap.set('n', '<leader>gcu', 'dd/|||<CR>0v/>>><CR>$x', { desc = '[G]it [C]onflict Choose [U]pstream' })
 vim.keymap.set('n', '<leader>gcb', '0v/|||<CR>$x/====<CR>0v/>>><CR>$x', { desc = '[G]it [C]onflict Choose [B]ase' })
 vim.keymap.set('n', '<leader>gcs', '0v/====<CR>$x/>>><CR>dd', { desc = '[G]it [C]onflict Choose [S]tashed' })
@@ -353,6 +353,8 @@ require('lazy').setup({
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = '[T]oggle' },
+        { '<leader>o', group = '[O]bsidian' },
+        { '<leader>e', group = 'File [E]xplorer' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
