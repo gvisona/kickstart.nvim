@@ -151,6 +151,11 @@
 -- --                        End Folding section
 -- -----------------------------------------------------------------------------
 
+-----------------------------------------------------------------------------
+-- Rendering in Browser
+-----------------------------------------------------------------------------
+-- Ensure that gh extension install yusukebe/gh-markdown-preview is installed for previews in browser
+
 return {
   {
     'MeanderingProgrammer/render-markdown.nvim',
@@ -160,7 +165,9 @@ return {
     opts = {},
   },
   {
-    'iamcco/markdown-preview.nvim',
+    -- If some packages are missing, go the the install folder (e.g. `.local/share/nvim/lazy/markdown-preview.nvim`)
+    -- and run `npm install`
+    'iamcco/markdown-preview.nvim', -- requires the '@chemzqm/neovim' node module
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
     ft = { 'markdown' },
     build = function()
@@ -171,8 +178,35 @@ return {
         '<leader>mp',
         ft = 'markdown',
         '<cmd>MarkdownPreviewToggle<cr>',
-        desc = 'Markdown Preview',
+        desc = '[M]arkdown [P]review',
       },
+    },
+  },
+  {
+    'HakonHarnes/img-clip.nvim',
+    event = 'VeryLazy',
+    opts = {
+      dirs = {
+        [vim.env.NOTES_DIR] = {
+          -- template = 'template for this project',
+
+          dir_path = 'Files',
+          -- filetypes = { -- filetype options nested inside dirs
+          --   markdown = {
+          --     template = 'markdown template',
+          --   },
+          -- },
+          --
+          -- files = { -- file options nested inside dirs
+          --   ['readme.md'] = {
+          --   },
+          -- },
+        },
+      },
+    },
+    keys = {
+      -- suggested keymap
+      { '<leader>np', '<cmd>PasteImage<cr>', desc = '[N]ote [P]aste image from system clipboard' },
     },
   },
 }
