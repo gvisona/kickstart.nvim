@@ -182,31 +182,46 @@ return {
       },
     },
   },
-  -- {
-  --   'HakonHarnes/img-clip.nvim',
-  --   event = 'VeryLazy',
-  --   opts = {
-  --     dirs = {
-  --       [vim.env.NOTES_DIR] = {
-  --         -- template = 'template for this project',
-  --
-  --         dir_path = 'Files',
-  --         -- filetypes = { -- filetype options nested inside dirs
-  --         --   markdown = {
-  --         --     template = 'markdown template',
-  --         --   },
-  --         -- },
-  --         --
-  --         -- files = { -- file options nested inside dirs
-  --         --   ['readme.md'] = {
-  --         --   },
-  --         -- },
-  --       },
-  --     },
-  --   },
-  --   keys = {
-  --     -- suggested keymap
-  --     { '<leader>np', '<cmd>PasteImage<cr>', desc = '[N]ote [P]aste image from system clipboard' },
-  --   },
-  -- },
+  {
+    'HakonHarnes/img-clip.nvim',
+    event = 'VeryLazy',
+    opts = {
+      dirs = {
+        ['~/Obsidian/Alexandria'] = {
+          -- template = 'template for this project',
+
+          dir_path = 'Files',
+          -- filetypes = { -- filetype options nested inside dirs
+          --   markdown = {
+          --     template = 'markdown template',
+          --   },
+          -- },
+          --
+          -- files = { -- file options nested inside dirs
+          --   ['readme.md'] = {
+          --   },
+          -- },
+        },
+        ['~/Obsidian/WorkNotes'] = {
+          -- template = 'template for this project',
+
+          dir_path = 'Images',
+          -- filetypes = { -- filetype options nested inside dirs
+          --   markdown = {
+          --     template = 'markdown template',
+          --   },
+          -- },
+          --
+          -- files = { -- file options nested inside dirs
+          --   ['readme.md'] = {
+          --   },
+          -- },
+        },
+      },
+    },
+    keys = {
+      -- suggested keymap
+      { '<leader>np', '<cmd>PasteImage<cr>', desc = '[N]ote [P]aste image from system clipboard' },
+    },
+  },
 }
