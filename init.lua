@@ -218,6 +218,19 @@ vim.keymap.set('n', 'yd', 'yygccp', { remap = true, desc = 'Duplicate line and c
 -- Improve scrolling navigation
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
+
+-- Vertical scrolling by a few lines, find better mappings?
+vim.keymap.set('n', '<C-m>', '5jzz')
+vim.keymap.set('n', '<C-,>', '5kzz')
+
+-- Swap lines
+vim.keymap.set('n', '<leader>mj', ':m .+1<CR>==', { desc = 'Move line down' })
+vim.keymap.set('n', '<leader>mk', ':m .-2<CR>==', { desc = 'Move line up' })
+
+vim.keymap.set('v', '<leader>mj', ':m >+1<CR>gv=gv', { desc = 'Move line down in visual mode' })
+vim.keymap.set('v', '<leader>mk', ':m <-2<CR>gv=gv', { desc = 'Move line up in visual mode' })
 
 -- Git utilities
 vim.keymap.set('n', '<leader>gcf', '/<<<<CR>', { desc = '[G]it [C]onflict [F]ind' })
