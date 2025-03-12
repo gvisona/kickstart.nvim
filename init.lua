@@ -442,11 +442,16 @@ require('lazy').setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        pickers = {
-          find_files = {
-            theme = 'ivy',
-          },
+        defaults = {
+          layout_strategy = 'vertical',
+          layout_config = { height = 0.95, width = 0.8 },
         },
+
+        -- pickers = {
+        --   find_files = {
+        --     theme = 'ivy',
+        --   },
+        -- },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
