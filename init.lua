@@ -191,10 +191,10 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+-- vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+-- vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+-- vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+-- vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- [[ Custom Keymaps ]]
 
@@ -222,8 +222,12 @@ vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 
 -- Vertical scrolling by a few lines, find better mappings?
-vim.keymap.set('n', '<C-m>', '5jzz')
-vim.keymap.set('n', '<C-,>', '5kzz')
+vim.keymap.set('n', '<C-j>', '5jzzzv', { desc = 'Move down by 5 lines' })
+vim.keymap.set('n', '<C-k>', '5kzzzv', { desc = 'Move up by 5 lines' })
+
+-- Horizontal movement
+-- Replace if better options come up
+vim.keymap.set('n', '<C-h>', '^', { desc = 'Move to first non-whitespace characted in line' })
 
 -- Swap lines
 vim.keymap.set('n', '<leader>mj', ':m .+1<CR>==', { desc = 'Move line down' })
