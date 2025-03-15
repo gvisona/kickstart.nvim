@@ -79,9 +79,9 @@ return {
     ---@return table
     note_frontmatter_func = function(note)
       -- Add the title of the note as an alias.
-      -- if note.title then
-      --   note:add_alias(note.title)
-      -- end
+      if note.title then
+        note:add_alias(note.title)
+      end
       --
       local out = { id = note.id, aliases = note.aliases, tags = note.tags }
       --
@@ -120,6 +120,22 @@ return {
         path = client:vault_relative_path(path) or path
         return string.format('![%s](%s)', path.name, path)
       end,
+    },
+    mappings = {
+      -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
+      ['gf'] = {
+        action = function()
+          return require('obsidian').util.gf_passthrough()
+        end,
+        opts = { noremap = false, expr = true, buffer = true },
+      },
+      -- Toggle check-boxes.
+      ['<leader>ch'] = {
+        action = function()
+          return require('obsidian').util.toggle_checkbox()
+        end,
+        opts = { buffer = true },
+      },
     },
   },
   config = function(plugin, opts)
