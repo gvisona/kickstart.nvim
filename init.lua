@@ -224,6 +224,8 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 -- Vertical scrolling by a few lines, find better mappings?
 vim.keymap.set('n', '<C-j>', '5jzzzv', { desc = 'Move down by 5 lines' })
 vim.keymap.set('n', '<C-k>', '5kzzzv', { desc = 'Move up by 5 lines' })
+vim.keymap.set('n', '<C-h>', '^', { desc = 'Go to the first non-whitespace character' })
+vim.keymap.set('n', '<C-l>', '$', { desc = 'Go to the end of the line' })
 
 -- Horizontal movement
 -- Replace if better options come up
@@ -671,14 +673,14 @@ require('lazy').setup({
       })
 
       -- Change diagnostic symbols in the sign column (gutter)
-      -- if vim.g.have_nerd_font then
-      --   local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
-      --   local diagnostic_signs = {}
-      --   for type, icon in pairs(signs) do
-      --     diagnostic_signs[vim.diagnostic.severity[type]] = icon
-      --   end
-      --   vim.diagnostic.config { signs = { text = diagnostic_signs } }
-      -- end
+      if vim.g.have_nerd_font then
+        local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
+        local diagnostic_signs = {}
+        for type, icon in pairs(signs) do
+          diagnostic_signs[vim.diagnostic.severity[type]] = icon
+        end
+        vim.diagnostic.config { signs = { text = diagnostic_signs } }
+      end
 
       -- LSP servers and clients are able to communicate to each other what features they support.
       --  By default, Neovim doesn't support everything that is in the LSP specification.
