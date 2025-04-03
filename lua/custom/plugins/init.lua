@@ -4,7 +4,7 @@
 -- See the kickstart.nvim README for more information
 return {
   {
-    'ray-x/lsp_signature.nvim',
+    'ray-x/lsp_signature.nvim', -- Show function signature in a window in insert mode
     event = 'InsertEnter',
     opts = {
       bind = true,

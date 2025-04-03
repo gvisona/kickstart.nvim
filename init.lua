@@ -181,12 +181,6 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -204,13 +198,14 @@ vim.keymap.set({ 'n', 'x' }, 'S', '<Nop>')
 
 -- File navigation, open ex mode
 vim.keymap.set('n', '<leader>e', vim.cmd.Ex, { desc = 'Open vim Ex file explorer' })
+vim.keymap.set('n', '<leader><Tab>', '<cmd>b#<CR>', { desc = 'Switch to previous buffer' })
 
 -- Keep selection after indentation
-vim.keymap.set('v', '>', '>gv')
-vim.keymap.set('v', '<', '<gv')
+vim.keymap.set('x', '>', '>gv')
+vim.keymap.set('x', '<', '<gv')
 
 -- Keep same content in register after pasting
-vim.keymap.set('v', '<leader>p', '"_dP')
+vim.keymap.set('x', '<leader>p', '"_dP')
 
 -- Copy line and comment original
 vim.keymap.set('n', 'yd', 'yygccp', { remap = true, desc = 'Duplicate line and comment' })
@@ -224,8 +219,6 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 -- Vertical scrolling by a few lines, find better mappings?
 vim.keymap.set('n', '<C-j>', '5jzzzv', { desc = 'Move down by 5 lines' })
 vim.keymap.set('n', '<C-k>', '5kzzzv', { desc = 'Move up by 5 lines' })
-vim.keymap.set('n', '<C-h>', '^', { desc = 'Go to the first non-whitespace character' })
-vim.keymap.set('n', '<C-l>', '$', { desc = 'Go to the end of the line' })
 
 -- Horizontal movement
 -- Replace if better options come up
@@ -235,14 +228,14 @@ vim.keymap.set('n', '<C-h>', '^', { desc = 'Move to first non-whitespace charact
 vim.keymap.set('n', '<leader>mj', ':m .+1<CR>==', { desc = 'Move line down' })
 vim.keymap.set('n', '<leader>mk', ':m .-2<CR>==', { desc = 'Move line up' })
 
-vim.keymap.set('v', '<leader>mj', ':m >+1<CR>gv=gv', { desc = 'Move line down in visual mode' })
-vim.keymap.set('v', '<leader>mk', ':m <-2<CR>gv=gv', { desc = 'Move line up in visual mode' })
+vim.keymap.set('x', '<leader>mj', ':m >+1<CR>gv=gv', { desc = 'Move line down in visual mode' })
+vim.keymap.set('x', '<leader>mk', ':m <-2<CR>gv=gv', { desc = 'Move line up in visual mode' })
 
 -- Git utilities
 vim.keymap.set('n', '<leader>gcf', '/<<<<CR>', { desc = '[G]it [C]onflict [F]ind' })
-vim.keymap.set('n', '<leader>gcu', 'dd/|||<CR>0v/>>><CR>$x', { desc = '[G]it [C]onflict Choose [U]pstream' })
-vim.keymap.set('n', '<leader>gcb', '0v/|||<CR>$x/====<CR>0v/>>><CR>$x', { desc = '[G]it [C]onflict Choose [B]ase' })
-vim.keymap.set('n', '<leader>gcs', '0v/====<CR>$x/>>><CR>dd', { desc = '[G]it [C]onflict Choose [S]tashed' })
+-- vim.keymap.set('n', '<leader>gcu', 'dd/|||<CR>0v/>>><CR>$x', { desc = '[G]it [C]onflict Choose [U]pstream' })
+-- vim.keymap.set('n', '<leader>gcb', '0v/|||<CR>$x/====<CR>0v/>>><CR>$x', { desc = '[G]it [C]onflict Choose [B]ase' })
+-- vim.keymap.set('n', '<leader>gcs', '0v/====<CR>$x/>>><CR>dd', { desc = '[G]it [C]onflict Choose [S]tashed' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -371,7 +364,8 @@ require('lazy').setup({
       -- Document existing key chains
       spec = {
         { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
-        { '<leader>d', group = '[D]ocument' },
+        { '<leader>d', group = '[D]ebug' },
+        { '<leader>dp', group = '[D]ebug [P]ython', mode = { 'n', 'x' } },
         { '<leader>g', group = '[G]it' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
@@ -382,7 +376,7 @@ require('lazy').setup({
         { '<leader>o', group = '[O]bsidian' },
         { '<leader>e', group = 'File [E]xplorer' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-        { '<leader>z', group = 'Github Copilot', mode = { 'n', 'v' } },
+        { '<leader>z', group = 'Github Copilot', mode = { 'n', 'x' } },
       },
     },
   },
@@ -613,7 +607,7 @@ require('lazy').setup({
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
-          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+          map('<leader>sy', require('telescope.builtin').lsp_document_symbols, 'Document [SY]mbols')
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
@@ -1035,7 +1029,7 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
