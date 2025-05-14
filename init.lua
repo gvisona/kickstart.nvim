@@ -376,7 +376,7 @@ require('lazy').setup({
         { '<leader>o', group = '[O]bsidian' },
         { '<leader>e', group = 'File [E]xplorer' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-        { '<leader>z', group = 'Github Copilot', mode = { 'n', 'x' } },
+        -- { '<leader>z', group = 'Github Copilot', mode = { 'n', 'x' } },
       },
     },
   },
