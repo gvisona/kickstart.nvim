@@ -223,6 +223,7 @@ vim.keymap.set('n', '<C-k>', '5kzzzv', { desc = 'Move up by 5 lines' })
 -- Horizontal movement
 -- Replace if better options come up
 vim.keymap.set('n', '<C-h>', '^', { desc = 'Move to first non-whitespace characted in line' })
+vim.keymap.set('n', '<C-h>', '$', { desc = 'Move to first non-whitespace characted in line' })
 
 -- Swap lines
 vim.keymap.set('n', '<leader>mj', ':m .+1<CR>==', { desc = 'Move line down' })
