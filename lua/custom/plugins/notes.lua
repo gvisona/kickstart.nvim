@@ -299,12 +299,12 @@ return {
     },
     config = function(plugin, opts)
       require('obsidian').setup(opts)
-      vim.keymap.set('n', '<leader>on', '<cmd>ObsidianNewFromTemplate<cr>', { desc = 'New [O]bsidian [N]ote' })
-      vim.keymap.set('n', '<leader>so', '<cmd>ObsidianSearch<cr>', { desc = '[S]earch [O]bsidian notes' })
-      vim.keymap.set('n', '<leader>os', '<cmd>ObsidianQuickSwitch<cr>', { desc = '[O]bsidian quick [S]witch' })
-      vim.keymap.set('n', '<leader>ob', '<cmd>ObsidianBacklinks<cr>', { desc = 'Location list of [O]bsidian [B]acklinks' })
-      vim.keymap.set('n', '<leader>ot', '<cmd>ObsidianTemplate<cr>', { desc = '[O]bsidian [T]emplate' })
-      vim.keymap.set('n', '<leader>oi', '<cmd>ObsidianPasteImg<cr>', { desc = '[O]bsidian paste [I]mage' })
+      vim.keymap.set('n', '<leader>on', '<cmd>Obsidian new_from_template<cr>', { desc = 'New [O]bsidian [N]ote' })
+      vim.keymap.set('n', '<leader>so', '<cmd>Obsidian search<cr>', { desc = '[S]earch [O]bsidian notes' })
+      vim.keymap.set('n', '<leader>os', '<cmd>Obsidian quick_switch<cr>', { desc = '[O]bsidian quick [S]witch' })
+      vim.keymap.set('n', '<leader>ob', '<cmd>Obsidian backlinks<cr>', { desc = 'Location list of [O]bsidian [B]acklinks' })
+      vim.keymap.set('n', '<leader>ot', '<cmd>Obsidian template<cr>', { desc = '[O]bsidian [T]emplate' })
+      vim.keymap.set('n', '<leader>oi', '<cmd>Obsidian paste_img<cr>', { desc = '[O]bsidian paste [I]mage' })
     end,
   },
   {
