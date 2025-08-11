@@ -233,7 +233,9 @@ vim.keymap.set('x', '<leader>mj', ':m >+1<CR>gv=gv', { desc = 'Move line down in
 vim.keymap.set('x', '<leader>mk', ':m <-2<CR>gv=gv', { desc = 'Move line up in visual mode' })
 
 -- Git utilities
-vim.keymap.set('n', '<leader>gcf', '/<<<<CR>', { desc = '[G]it [C]onflict [F]ind' })
+vim.keymap.set('n', '<leader>gc', '/<<<<CR>', { desc = '[G]it [C]onflict find' })
+vim.keymap.set('n', '<leader>gb', ':BlameToggle<CR>', { desc = '[G]it [B]lame' })
+
 -- vim.keymap.set('n', '<leader>gcu', 'dd/|||<CR>0v/>>><CR>$x', { desc = '[G]it [C]onflict Choose [U]pstream' })
 -- vim.keymap.set('n', '<leader>gcb', '0v/|||<CR>$x/====<CR>0v/>>><CR>$x', { desc = '[G]it [C]onflict Choose [B]ase' })
 -- vim.keymap.set('n', '<leader>gcs', '0v/====<CR>$x/>>><CR>dd', { desc = '[G]it [C]onflict Choose [S]tashed' })
