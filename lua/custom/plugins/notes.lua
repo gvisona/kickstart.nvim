@@ -166,6 +166,7 @@ return {
       'nvim-lua/plenary.nvim',
     },
     opts = {
+      legacy_commands = false,
       workspaces = {
         {
           name = 'Alexandria',
@@ -280,22 +281,22 @@ return {
           return string.format('![%s](%s)', path.name, path)
         end,
       },
-      mappings = {
-        -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
-        ['gf'] = {
-          action = function()
-            return require('obsidian').util.gf_passthrough()
-          end,
-          opts = { noremap = false, expr = true, buffer = true },
-        },
-        -- Toggle check-boxes.
-        ['<leader>ch'] = {
-          action = function()
-            return require('obsidian').util.toggle_checkbox()
-          end,
-          opts = { buffer = true },
-        },
-      },
+      --   mappings = {
+      --     -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
+      --     ['gf'] = {
+      --       action = function()
+      --         return require('obsidian').util.gf_passthrough()
+      --       end,
+      --       opts = { noremap = false, expr = true, buffer = true },
+      --     },
+      --     -- Toggle check-boxes.
+      --     ['<leader>ch'] = {
+      --       action = function()
+      --         return require('obsidian').util.toggle_checkbox()
+      --       end,
+      --       opts = { buffer = true },
+      --     },
+      --   },
     },
     config = function(plugin, opts)
       require('obsidian').setup(opts)
